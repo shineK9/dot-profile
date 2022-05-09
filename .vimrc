@@ -1,18 +1,20 @@
 call plug#begin()
+  "Plug 'glepnir/dashboard-nvim'
   Plug 'preservim/nerdtree'
   Plug 'eslint/eslint'
   Plug 'joshdick/onedark.vim'
+  Plug 'sonph/onehalf', { 'rtp': 'vim' }
   Plug 'vim-airline/vim-airline'
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'yaegassy/coc-volar-tools', {'do': 'yarn install --frozen-lockfile'}
 
   Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+    \ 'do': 'yarn install'  }
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'mattn/emmet-vim'
+  Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 nnoremap <C-b> :NERDTreeToggle<CR>
@@ -21,9 +23,25 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 
 set number
 
+"packadd! dracula
+
+"set t_Co=256
+set cursorline
+set termguicolors
 syntax on
-colorscheme onedark
+"let ayucolor="light"
+"colorscheme ayu
+"colorscheme onedark
 let g:airline_theme='onedark'
+colorscheme onedark
+"colorscheme onehalflight
+"let g:airline_theme='onehalflight'
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 if (empty($TMUX))
     if (has("nvim"))
@@ -252,7 +270,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " fzf
 let g:fzf_preview_window = 'right:50%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
-nnoremap <leader>o :GFiles<CR>
+nnoremap <leader>o :GFiles<CR> 
 
-nnoremap <leader>f :Lines<CR>
+nnoremap <leader>f :Lines<CR> 
 nnoremap <C-r> :redo<CR>
