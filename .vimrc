@@ -1,5 +1,6 @@
 call plug#begin()
   "Plug 'glepnir/dashboard-nvim'
+  Plug 'ryanoasis/vim-devicons'
   Plug 'preservim/nerdtree'
   Plug 'eslint/eslint'
   Plug 'joshdick/onedark.vim'
@@ -17,7 +18,21 @@ call plug#begin()
   Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
-nnoremap <C-b> :NERDTreeToggle<CR>
+" Commenting blocks of code.
+augroup commenting_blocks_of_code
+  autocmd!
+  autocmd FileType c,cpp,java,js,ts,vue,scala let b:comment_leader = '// '
+  autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+  autocmd FileType conf,fstab       let b:comment_leader = '# '
+  autocmd FileType tex              let b:comment_leader = '% '
+  autocmd FileType mail             let b:comment_leader = '> '
+  autocmd FileType vim              let b:comment_leader = '" '
+augroup END
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+
+nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-p> :PrettierAsync<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 
@@ -77,7 +92,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 "-------------- front about options --------------
 
 " set vert line
-set fillchars=vert:\
+set fillchars=vert:\|
 highlight VertSplit ctermfg=black
 
 set number
