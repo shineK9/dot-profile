@@ -26,6 +26,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias cls="clear"
+alias v="nvim"
 
 # https://github.com/skywind3000/vim/blob/master/etc/zshrc.zsh
 # Antigen: https://github.com/zsh-users/antigen

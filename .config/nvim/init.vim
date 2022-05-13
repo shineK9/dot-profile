@@ -1,5 +1,6 @@
 call plug#begin()
-  "Plug 'glepnir/dashboard-nvim'
+  Plug 'glepnir/dashboard-nvim'
+  Plug 'roxma/vim-tmux-clipboard'
   Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'ryanoasis/vim-devicons'
   Plug 'preservim/nerdtree'
@@ -9,6 +10,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
   Plug 'yaegassy/coc-volar-tools', {'do': 'yarn install --frozen-lockfile'}
 
   Plug 'prettier/vim-prettier', {
@@ -18,6 +20,10 @@ call plug#begin()
   Plug 'mattn/emmet-vim'
   Plug 'ayu-theme/ayu-vim'
 call plug#end()
+
+let g:dashboard_default_executive ='clap'
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
 
 au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'nuxt.config.ts']
 
