@@ -1,7 +1,7 @@
 call plug#begin()
   Plug 'glepnir/dashboard-nvim'
-  Plug 'roxma/vim-tmux-clipboard'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
   Plug 'ryanoasis/vim-devicons'
   Plug 'preservim/nerdtree'
   Plug 'eslint/eslint'
@@ -21,9 +21,26 @@ call plug#begin()
   Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
-let g:dashboard_default_executive ='clap'
+" telescope configuration
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+
+let g:dashboard_default_executive ='telescope'
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR>
+let g:dashboard_custom_shortcut={
+\ 'last_session'       : 'SPC s l',
+\ 'find_history'       : 'SPC f h',
+\ 'find_file'          : 'SPC f f',
+\ 'new_file'           : 'SPC c n',
+\ 'change_colorscheme' : 'SPC t c',
+\ 'find_word'          : 'SPC f a',
+\ 'book_marks'         : 'SPC f b',
+\ }
 
 au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'nuxt.config.ts']
 
@@ -296,5 +313,4 @@ let g:fzf_preview_window = 'right:50%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 nnoremap <leader>o :GFiles<CR> 
 
-nnoremap <leader>f :Lines<CR> 
 nnoremap <C-r> :redo<CR>
