@@ -7,11 +7,12 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="cloud"
+ZSH_THEME="af-magic"
 
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+eval `dircolors ~/.dircolors`
 
 # set_proxy
 export http_proxy=http://192.168.0.253:7890
@@ -138,8 +139,8 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 
-# ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
-# ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 
 ZSH_HIGHLIGHT_STYLES[default]=none
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=009
